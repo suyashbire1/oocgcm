@@ -5,6 +5,7 @@ oocgcm.filtering.linearfilters
 Define functions for linear filtering that works on multi-dimensional
 xarray.DataArray and xarray.Dataset objects.
 """
+from __future__ import print_function
 import copy
 import xarray as xr
 import numpy as np
@@ -45,9 +46,9 @@ def lanczos(n, fc=0.02):
 		try:
 			n = int(n)
 		except:
-			TypeError, "n must be an integer"
+			TypeError("n must be an integer")
 	if not n % 2 == 1:
-		raise ValueError, "n must an odd integer"
+		raise ValueError("n must an odd integer")
 	dim = 1
 	if dim ==  1:
 		k = np.arange(- n / 2 + 1, n / 2 + 1)
@@ -156,14 +157,14 @@ class Window(object):
 			self.dims = dims
 		for dim in self.dims:
 			if not dim in self._obj.dims:
-				raise ValueError, ("Dimension " + dim + "does not exist")
+				raise ValueError("Dimension " + dim + "does not exist")
 		if window_name in _scipy_window_dict:
 			window_function = _scipy_window_dict[window_name]
 		elif window_name in _local_window_dict:
 			window_function = _local_window_dict[window_name]
 		else:
-			raise ValueError, "This type of window is not supported, " \
-			                  "please check the name"
+			raise ValueError("This type of window is not supported, " \
+			                  "please check the name")
 		self.order = dict()
 		self.coefficients = 1.
 		self.coords = []
@@ -275,7 +276,7 @@ class Window(object):
 			fx = np.linspace(-0.5, 0.5, 1024)
 			fy = np.linspace(-0.5, 0.5, 1024)
 			f2d = np.meshgrid(fy, fx)
-			print self._depth
+			print(self._depth)
 			nx, ny = self._depth.values()
 			if  format == 'landscape':
 				gs = gridspec.GridSpec(2, 4, width_ratios=[2, 1, 2, 1], height_ratios=[1, 2])
@@ -293,7 +294,7 @@ class Window(object):
 			# Full 2d weight distribution
 			ax_n2d = plt.subplot(gs[4])
 			nx2d, ny2d = np.meshgrid(np.arange(-nx, nx + 1), np.arange(-ny, ny + 1), indexing='ij')
-			print np.shape(nx2d)
+			print(np.shape(nx2d))
 			ax_n2d.pcolormesh(nx2d, ny2d, self.coefficients.squeeze())
 			ax_n2d.set_xlim((-nx, nx))
 			ax_n2d.set_ylim((-ny, ny))
@@ -323,7 +324,7 @@ class Window(object):
 			           horizontalalignment='right', verticalalignment='top')
 			plt.tight_layout()
 		else:
-			raise ValueError, "This number of dimension is not supported by the plot function"
+			raise ValueError("This number of dimension is not supported by the plot function")
 
 
 def tapper(data, window_name, dims, **kargs):
