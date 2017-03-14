@@ -178,9 +178,9 @@ class TestGrid2d_DifferentialOperators(TestCase):
                        ).to_masked_array()
         self.assertArray2dCloseInside(actual_gx / s,expected_gx / s ,
                                       depth=2,**tols)
-        #print dxdy[:,20].values
-        #print self.grd._arrays['cell_y_size_at_t_location'][:,20].values
-        #print self.grd._arrays['cell_y_size_at_v_location'][:,20].values
+        #print(dxdy[:,20].values)
+        #print(self.grd._arrays['cell_y_size_at_t_location'][:,20].values)
+        #print(self.grd._arrays['cell_y_size_at_v_location'][:,20].values)
         #print_array_around(expected=expected_gy/s,actual=actual_gy/s)
         self.assertArray2dCloseInside(actual_gy / s,expected_gy /s ,
                                       depth=2, **tols)
@@ -192,8 +192,8 @@ class TestGrid2d_DifferentialOperators(TestCase):
         curlgrad = self.grd.vertical_component_of_curl(grad)
         expected_curl = (0. * self.tvar1).to_masked_array()
         actual_curl = curlgrad.to_masked_array()
-        #print grad.x_component.values[20:23,20:23]
-        #print grad.y_component.values[20:23,20:23]
+        #print(grad.x_component.values[20:23,20:23])
+        #print(grad.y_component.values[20:23,20:23])
         #print_array_around(expected=expected_curl/s/s,actual=actual_curl/s/s)
         self.assertArray2dCloseInside(actual_curl/s/s,expected_curl/s/s,
                                          depth=4,**tols)
