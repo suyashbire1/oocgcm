@@ -30,15 +30,10 @@ before_install:
   - conda info -a
 
 install:
-  - conda env create --file ci/requirements-$CONDA_ENV.yml
+  - conda create -q -n test_env python=$TRAVIS_PYTHON_VERSION numpy scipy pandas matplotlib netcdf4 xarray numba bottleneck dask
   - source activate test_env
   - python setup.py install
-  - pip install coveralls
 
 script:
   - py.test oocgcm
 #  - py.test oocgcm --cov=oocgcm --cov-report=term-missing
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - coveralls
