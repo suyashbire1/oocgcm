@@ -1,5 +1,9 @@
 # Based on http://conda.pydata.org/docs/travis.html
 language: python
+python: 
+  - "2.7"
+  - "3.5"
+  - "3.6"
 sudo: false # use container based build
 notifications:
   email: false
