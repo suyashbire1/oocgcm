@@ -1,22 +1,12 @@
 # Based on http://conda.pydata.org/docs/travis.html
 language: python
-sudo: false # use container based build
-notifications:
-  email: false
+python:
+  - "2.7"
+  - "3.5"
+  - "3.6"
 
-matrix:
-  fast_finish: true
-  include:
-  - python: 2.7
-    env: CONDA_ENV=py27-min
-  - python: 2.7
-    env: CONDA_ENV=py27-dev
-  - python: 3.5
-    env: CONDA_ENV=py35-dev
-  - python: 3.6
-    env: CONDA_ENV=py36-dev
-
-before_install:
+install:
+  - sudo apt-get update
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       wget http://repo.continuum.io/miniconda/Miniconda-3.16.0-Linux-x86_64.sh -O miniconda.sh;
     else
@@ -28,8 +18,6 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-
-install:
   - conda create -q -n test_env python=$TRAVIS_PYTHON_VERSION netcdf4 dask xarray numba bottleneck
   - source activate test_env
   - python setup.py install
