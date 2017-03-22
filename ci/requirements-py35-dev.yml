@@ -3,8 +3,9 @@ dependencies:
   - python=3.5
   - numpy
   - scipy
-  - netcdf4
   - pandas
+  - netcdf4
+  - hdf5
   - xarray
   - dask
   - bottleneck

@@ -1,13 +1,14 @@
 name: test_env
 dependencies:
-  - python=2.7
+  - python=3.6
   - numpy
+  - scipy
   - pandas
+  - netcdf4
+  - hdf5
   - xarray
   - dask
   - bottleneck
   - numba
-  - matplotlib
-  - scipy
   - pip:
     - pytest-cov
