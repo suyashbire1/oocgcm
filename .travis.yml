@@ -30,7 +30,7 @@ before_install:
   - conda info -a
 
 install:
-  - conda create -q -n test_env python=$TRAVIS_PYTHON_VERSION numpy scipy pandas matplotlib netcdf4 dask xarray numba bottleneck
+  - conda create -q -n test_env python=$TRAVIS_PYTHON_VERSION netcdf4 dask xarray numba bottleneck
   - source activate test_env
   - python setup.py install
 
