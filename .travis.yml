@@ -5,7 +5,8 @@ python:
   - "3.6"
 
 install:
-  - sudo apt-get update
+  - sudo apt update
+  - sudo apt install llvm
   - pip install numpy netCDF4 xarray dask bottleneck numba
   - python setup.py install
 
